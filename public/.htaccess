@@ -1,0 +1,15 @@
+Options -Indexes
+RewriteEngine On
+
+# Path sesuai lokasi folder: htdocs/travel-app-output/public/
+RewriteBase /travel-app-output/public/
+
+# Blokir akses file sensitif
+RewriteRule ^(\.env|\.htaccess) - [F,L]
+
+# Izinkan file & folder yang benar-benar ada (CSS, JS, gambar, dll)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Semua request lain → index.php
+RewriteRule ^ index.php [QSA,L]
